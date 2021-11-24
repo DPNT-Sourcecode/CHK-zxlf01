@@ -2,6 +2,7 @@
 # skus = unicode string
 def checkout(skus):
 
+
     items = {
         "A": {"price": 50, "deals": [{"quantity": 5, "price": 200}, {"quantity": 3, "price": 130}]},
         "B": {"price": 30, "deals": [{"quantity": 2, "price": 45}]},
@@ -42,20 +43,34 @@ def checkout(skus):
         else:
             return -1
 
-    #Applies special offer up front - allows for multiple instances
+    # Applies special offer up front - allows for multiple instances and combinations.
+    # Did not originally account for multiple instances of each item.
     offer_items_collection = special_offer["collection"]
 
     checking_for_offers = True
 
     while checking_for_offers:
 
-        offer_items_present = []
+        offer_items_quantity = {}
 
         for offer_item in offer_items_collection:
 
             if all_items[offer_item] > 0:
-                offer_items_present.append(offer_item)
-                checking_for_offers = False
+                offer_items_quantity.update({offer_item: all_items[offer_item]})
+
+        for offer_item in offer_items_quantity.keys():
+            tuple = (offer_item, items[offer_item]["price"])
+            all_prices.append(tuple)
+
+        sorted_by_price = sorted(all_prices, key=lambda x: x[1], reverse=True)
+
+        offer_items_total = 0
+
+        for item, price in sorted_by_price:
+            while offer_items_quantity[item] > 0:
+                offer_items_quantity[item] -= 1
+                offer_items_total += 1
+
 
         if len(offer_items_present) >= 3:
             total_cost += special_offer["cost"]
@@ -115,3 +130,4 @@ def checkout(skus):
         total_cost += (item_count*item_price)
 
     return total_cost
+
