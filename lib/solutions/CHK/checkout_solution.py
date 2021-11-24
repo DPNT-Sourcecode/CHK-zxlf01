@@ -1,5 +1,3 @@
-
-
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
@@ -30,12 +28,9 @@ def checkout(skus):
 
         if item_deal_quantity:
             complete_deals = item_count//item_deal_quantity
-            total_value += (complete_deals * item_deal_price) + \
-                           (item_count - ((complete_deals*item_deal_quantity)*item_price))
-        else:
-            total_value += (item_count*item_price)
+            total_value += (complete_deals * item_deal_price)
+            item_count -= complete_deals * item_deal_quantity
 
-    print(total_value)
+        total_value += (item_count*item_price)
+
     return total_value
-
-checkout("ABD")
