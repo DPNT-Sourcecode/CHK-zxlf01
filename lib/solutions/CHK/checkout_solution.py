@@ -30,10 +30,10 @@ def checkout(skus):
             free_item = item_details["free_items"]["item"]
 
             complete_deals = item_count // quantity_required
-            all_items[item] -= complete_deals
+            all_items[free_item] -= complete_deals
 
-            if all_items[item] < 0:
-                all_items[item] = 0
+            if all_items[free_item] < 0:
+                all_items[free_item] = 0
 
     # Charges for items left in shopping cart (with deals)
     for item, item_details in items.items():
@@ -60,5 +60,6 @@ def checkout(skus):
         total_cost += (item_count*item_price)
 
     return total_cost
+
 
 
