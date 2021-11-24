@@ -60,11 +60,11 @@ def checkout(skus):
         if len(offer_items_present) >= 3:
             total_cost += special_offer["cost"]
 
-            all_prices = []
+            all_prices = {}
 
             for offer_item in offer_items_present:
-                all_prices.append = {offer_item: items[offer_item]["price"]}
-                
+                all_prices.update({offer_item: items[offer_item]["price"]})
+
             sorted_by_price = dict(sorted(all_prices.items(), key=lambda x: x[1]))
 
             for offer_item in sorted_by_price[3:]:
@@ -117,5 +117,6 @@ def checkout(skus):
     return total_cost
 
 checkout("STXY")
+
 
 
