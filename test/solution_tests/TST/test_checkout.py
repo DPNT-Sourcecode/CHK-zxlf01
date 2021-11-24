@@ -11,7 +11,5 @@ class TestCheckout():
         assert checkout("BBB") == 75
         assert checkout("") == 0
         assert checkout("BBGTI") == 120
-        assert checkout("LLKKAAAED") == 315
+        assert checkout("LLKKAAAED") == 515
         assert checkout("UUUU") == 120
-
-
