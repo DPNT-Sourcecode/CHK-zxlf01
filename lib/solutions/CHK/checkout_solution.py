@@ -66,9 +66,9 @@ def checkout(skus):
                 tuple = (offer_item, items[offer_item]["price"])
                 all_prices.append(tuple)
 
-            sorted_by_price = all_prices.sort(key=lambda x: x[1])
+            sorted_by_price = sorted(all_prices, key=lambda x: x[1], reverse=True)
 
-            for offer_item, price in sorted_by_price[3:]:
+            for offer_item, price in sorted_by_price[:3]:
                 all_items[offer_item] -= 1
 
         else:
@@ -114,6 +114,7 @@ def checkout(skus):
 
         total_cost += (item_count*item_price)
 
+    print(total_cost)
     return total_cost
 
 checkout("STXY")
