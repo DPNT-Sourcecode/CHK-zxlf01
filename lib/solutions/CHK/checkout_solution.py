@@ -27,7 +27,15 @@ def checkout(skus):
         item_count = all_items.count(item)
 
         available_deals = []
-        if item_deals:
+
+        if items.get("free_items"):
+            quantity_required = items["free_items"]["quantity"]
+            free_item = items["free_items"]["item"]
+
+            if free_item in all_items:
+                all_items.remove(free_item)
+
+        if items.get("deals"):
 
             for deal in item_deals:
 
@@ -41,7 +49,10 @@ def checkout(skus):
 
         total_cost += (item_count*item_price)
 
+    print(total_cost)
     return total_cost
+
+checkout("EE")
 
 
 
