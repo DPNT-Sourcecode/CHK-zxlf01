@@ -42,6 +42,3 @@ def checkout(skus):
         total_value += (item_count*item_price)
 
     return total_value
-
-
-
