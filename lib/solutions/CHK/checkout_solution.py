@@ -22,17 +22,18 @@ def checkout(skus):
     # Checks for free items and removes from shopping list
     for item, item_details in items.items():
 
-        item_count = all_items.count(item)
+        item_count = all_items[item]
 
         if item_details.get("free_items") and item_count:
             free_items = item_details["free_items"]
-            quantity_required = free_items["quantity"]
-            free_item = free_items["item"]
+            quantity_required = item_details["free_items"]["quantity"]
+            free_item = item_details["free_items"]["item"]
 
             complete_deals = item_count // quantity_required
-            for i in range(0, complete_deals):
-                if free_item in all_items:
-                    all_items.remove(free_item)
+            all_items[item] -= complete_deals
+
+            if all_items[item] < 0:
+                all_items[item] = 0
 
     # Charges for items left in shopping cart (with deals)
     for item, item_details in items.items():
@@ -40,7 +41,7 @@ def checkout(skus):
         item_price = item_details["price"]
         item_deals = item_details.get("deals")
 
-        item_count = all_items.count(item)
+        item_count = all_items[item]
 
         available_deals = []
 
@@ -62,4 +63,5 @@ def checkout(skus):
     return total_cost
 
 checkout("BBB")
+
 
