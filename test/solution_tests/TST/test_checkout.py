@@ -5,7 +5,9 @@ class TestCheckout():
     def test_checkout(self):
         assert checkout("FFF") == 20
         assert checkout("AAABC") == 180
+        assert checkout("AAAAA") == 200
         assert checkout("DDEF") == 80
         assert checkout("EEB") == 80
         assert checkout("BBB") == 75
         assert checkout("") == 0
+

@@ -60,7 +60,5 @@ def checkout(skus):
 
         total_cost += (item_count*item_price)
 
-    print(total_cost)
     return total_cost
 
-checkout("FFF")
