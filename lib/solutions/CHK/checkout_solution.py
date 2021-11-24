@@ -19,6 +19,7 @@ def checkout(skus):
         else:
             return -1
 
+    # Checks for free items and removes from shopping list
     for item, item_details in items.items():
 
         item_count = all_items.count(item)
@@ -29,11 +30,11 @@ def checkout(skus):
             free_item = free_items["item"]
 
             complete_deals = item_count // quantity_required
-            for i in range(1, quantity_required + 1):
+            for i in range(0, complete_deals):
                 if free_item in all_items:
                     all_items.remove(free_item)
 
-
+    # Charges for items left in shopping cart (with deals)
     for item, item_details in items.items():
 
         item_price = item_details["price"]
@@ -60,4 +61,4 @@ def checkout(skus):
     print(total_cost)
     return total_cost
 
-checkout("EEB")
+checkout("BBB")
