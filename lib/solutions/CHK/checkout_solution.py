@@ -29,5 +29,3 @@ def checkout(skus):
         item_count = all_items.count(item)
 
         if item_count > 
-
-
