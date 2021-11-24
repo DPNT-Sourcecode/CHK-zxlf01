@@ -8,7 +8,27 @@ def checkout(skus):
         "C": {"price": 20},
         "D": {"price": 15},
         "E": {"price": 40, "free_items": {"quantity": 2, "item": "B"}},
-        "F": {"price": 10, "free_items": {"quantity": 3, "item": "F"}}
+        "F": {"price": 10, "free_items": {"quantity": 3, "item": "F"}},
+        "G": {"price": 20},
+        "H": {"price": 10, "deals": [{"quantity": 10, "price": 80}, {"quantity": 5, "price": 45}]},
+        "I": {"price": 35},
+        "J": {"price": 60},
+        "K": {"price": 80, "deals": [{"quantity": 2, "price": 150}]},
+        "L": {"price": 90},
+        "M": {"price": 15},
+        "N": {"price": 40, "free_items": {"quantity": 3, "item": "M"}},
+        "O": {"price": 10},
+        "P": {"price": 50, "deals": [{"quantity": 5, "price": 200}]},
+        "Q": {"price": 30, "deals": [{"quantity": 3, "price": 80}]},
+        "R": {"price": 50, "free_items": {"quantity": 3, "item": "Q"}},
+        "S": {"price": 30},
+        "T": {"price": 20},
+        "U": {"price": 40, "free_items": {"quantity": 4, "item": "U"}},
+        "V": {"price": 50, "deals": [{"quantity": 3, "price": 130}, {"quantity": 2, "price": 90}]},
+        "W": {"price": 20},
+        "X": {"price": 90},
+        "Y": {"price": 10},
+        "Z": {"price": 50}
     }
 
     total_cost = 0
@@ -61,4 +81,5 @@ def checkout(skus):
         total_cost += (item_count*item_price)
 
     return total_cost
+
 
