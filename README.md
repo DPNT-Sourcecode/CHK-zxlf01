@@ -14,4 +14,3 @@ pip[![Python Version](http://img.shields.io/badge/Python-3.7-blue.svg)](https://
 - Install dependencies `pip install -r requirements.txt`
 - Open `lib/send_command_to_server.py`
 - Read the comments as documentation, they will guide through the rest of the setup
-
