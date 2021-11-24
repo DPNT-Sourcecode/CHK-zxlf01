@@ -51,12 +51,16 @@ def checkout(skus):
 
     while checking_for_offers:
 
+        all_prices = []
+
         offer_items_quantity = {}
+        number_of_offer_items = 0
 
         for offer_item in offer_items_collection:
 
             if all_items[offer_item] > 0:
                 offer_items_quantity.update({offer_item: all_items[offer_item]})
+                number_of_offer_items += 1
 
         for offer_item in offer_items_quantity.keys():
             tuple = (offer_item, items[offer_item]["price"])
@@ -64,30 +68,14 @@ def checkout(skus):
 
         sorted_by_price = sorted(all_prices, key=lambda x: x[1], reverse=True)
 
-        offer_items_total = 0
+        discount_items = 0
 
         for item, price in sorted_by_price:
             while offer_items_quantity[item] > 0:
-                offer_items_quantity[item] -= 1
-                offer_items_total += 1
+                discount_items += 1
+                if discount_items == 3:
+                    offer_items_quantity[item] -= 1
 
-
-        if len(offer_items_present) >= 3:
-            total_cost += special_offer["cost"]
-
-            all_prices = []
-
-            for offer_item in offer_items_present:
-                tuple = (offer_item, items[offer_item]["price"])
-                all_prices.append(tuple)
-
-            sorted_by_price = sorted(all_prices, key=lambda x: x[1], reverse=True)
-
-            for offer_item, price in sorted_by_price[:3]:
-                all_items[offer_item] -= 1
-
-        else:
-            checking_for_offers = False
 
     # Checks for free items and removes from shopping list
     for item, item_details in items.items():
@@ -130,4 +118,5 @@ def checkout(skus):
         total_cost += (item_count*item_price)
 
     return total_cost
+
 
