@@ -21,12 +21,7 @@ def checkout(skus):
 
     for item, item_details in items.items():
 
-        item_price = item_details["price"]
-        item_deals = item_details.get("deals")
-
         item_count = all_items.count(item)
-
-        available_deals = []
 
         if item_details.get("free_items"):
             free_items = item_details["free_items"]
@@ -34,9 +29,19 @@ def checkout(skus):
             free_item = free_items["item"]
 
             complete_deals = item_count // quantity_required
-            for i in range(1,quantity_required+1):
+            for i in range(1, quantity_required + 1):
                 if free_item in all_items:
                     all_items.remove(free_item)
+
+
+    for item, item_details in items.items():
+
+        item_price = item_details["price"]
+        item_deals = item_details.get("deals")
+
+        item_count = all_items.count(item)
+
+        available_deals = []
 
         if items.get("deals"):
 
@@ -56,8 +61,3 @@ def checkout(skus):
     return total_cost
 
 checkout("EEB")
-
-
-
-
-
