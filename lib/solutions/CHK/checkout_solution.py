@@ -13,7 +13,7 @@ def checkout(skus):
         "H": {"price": 10, "deals": [{"quantity": 10, "price": 80}, {"quantity": 5, "price": 45}]},
         "I": {"price": 35},
         "J": {"price": 60},
-        "K": {"price": 80, "deals": [{"quantity": 2, "price": 150}]},
+        "K": {"price": 70, "deals": [{"quantity": 2, "price": 120}]},
         "L": {"price": 90},
         "M": {"price": 15},
         "N": {"price": 40, "free_items": {"quantity": 3, "item": "M"}},
@@ -81,3 +81,4 @@ def checkout(skus):
         total_cost += (item_count*item_price)
 
     return total_cost
+
