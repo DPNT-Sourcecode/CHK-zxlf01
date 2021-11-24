@@ -11,11 +11,11 @@ def checkout(skus):
     }
 
     total_cost = 0
-    all_items = []
+    all_items = dict.fromkeys(items, 0)
 
     for sku in skus:
         if sku in items:
-            all_items.append(sku)
+            all_items[sku] += 1
         else:
             return -1
 
@@ -62,3 +62,4 @@ def checkout(skus):
     return total_cost
 
 checkout("BBB")
+
