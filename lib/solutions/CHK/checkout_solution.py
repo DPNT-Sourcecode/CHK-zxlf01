@@ -41,12 +41,13 @@ def checkout(skus):
                     item_count -= complete_deals * item_deal_quantity
 
                 elif deal.get("free"):
-                    total_cost = items[deal["free"]]["price"]
+                    item_deal_quantity = deal["quantity"]
+                    complete_deals = item_count // item_deal_quantity
+                    total_cost += (items[deal["free"]]["price"] * complete_deals)
 
         total_cost += (item_count*item_price)
 
     return total_cost
 
-checkout("")
 
 
