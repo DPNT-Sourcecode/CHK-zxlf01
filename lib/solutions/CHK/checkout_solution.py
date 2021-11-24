@@ -21,15 +21,17 @@ def checkout(skus):
         "P": {"price": 50, "deals": [{"quantity": 5, "price": 200}]},
         "Q": {"price": 30, "deals": [{"quantity": 3, "price": 80}]},
         "R": {"price": 50, "free_items": {"quantity": 3, "item": "Q"}},
-        "S": {"price": 30},
+        "S": {"price": 20},
         "T": {"price": 20},
         "U": {"price": 40, "free_items": {"quantity": 4, "item": "U"}},
         "V": {"price": 50, "deals": [{"quantity": 3, "price": 130}, {"quantity": 2, "price": 90}]},
         "W": {"price": 20},
-        "X": {"price": 90},
-        "Y": {"price": 10},
-        "Z": {"price": 50}
+        "X": {"price": 17},
+        "Y": {"price": 20},
+        "Z": {"price": 21}
     }
+
+    special_offers = [{"collection": ["S", "T", "X", "Y", "Z"]}]
 
     total_cost = 0
     all_items = dict.fromkeys(items, 0)
@@ -39,6 +41,8 @@ def checkout(skus):
             all_items[sku] += 1
         else:
             return -1
+
+    
 
     # Checks for free items and removes from shopping list
     for item, item_details in items.items():
@@ -81,4 +85,5 @@ def checkout(skus):
         total_cost += (item_count*item_price)
 
     return total_cost
+
 
