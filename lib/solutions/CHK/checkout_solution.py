@@ -60,12 +60,13 @@ def checkout(skus):
         if len(offer_items_present) == 3:
             total_cost += special_offer["cost"]
 
-            for offer_item in offer_items_present[:3]:
-                all_items[offer_item] -= 1
+            all_prices = []
+
+            for offer_item in offer_items_present:
+                all_prices.append = {offer_item: items[offer_item]["price"]}
+                sorted_by_price = dict(sorted(all_prices.items(), key=lambda x: x[1]))
         else:
             checking_for_offers = False
-
-
 
     # Checks for free items and removes from shopping list
     for item, item_details in items.items():
@@ -108,3 +109,4 @@ def checkout(skus):
         total_cost += (item_count*item_price)
 
     return total_cost
+
