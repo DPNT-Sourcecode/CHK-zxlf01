@@ -22,10 +22,20 @@ def checkout(skus):
 
     for item, item_details in item_prices.items():
 
-        item_price = item_details["deal_price"]
+        item_price = item_details["price"]
         item_deal_quantity = item_details.get("deal_quantity")
         item_deal_price = item_details.get("deal_price")
 
         item_count = all_items.count(item)
 
-        if item_count > 
+        if item_deal_quantity:
+            complete_deals = item_count//item_deal_quantity
+            total_value += (complete_deals * item_deal_price) + \
+                           (item_count - ((complete_deals*item_deal_quantity)*item_price))
+        else:
+            total_value += (item_count*item_price)
+
+    print(total_value)
+    return total_value
+
+checkout("ABD")
