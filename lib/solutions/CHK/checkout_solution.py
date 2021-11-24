@@ -3,7 +3,7 @@
 def checkout(skus):
 
     item_prices = {
-        "A": {"price": 50, "deal_quantity": 3, "deal_price": 130},
+        "A": {"price": 50, "deals":[{"quantity": 3, "price": 130},{"quantity": 3, "price": 130}],
         "B": {"price": 30, "deal_quantity": 2, "deal_price": 45},
         "C": {"price": 20},
         "D": {"price": 15}
@@ -34,3 +34,4 @@ def checkout(skus):
         total_value += (item_count*item_price)
 
     return total_value
+
