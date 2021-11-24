@@ -7,7 +7,8 @@ def checkout(skus):
         "B": {"price": 30, "deals": [{"quantity": 2, "price": 45}]},
         "C": {"price": 20},
         "D": {"price": 15},
-        "E": {"price": 40, "free_items": {"quantity": 2, "item": "B"}}
+        "E": {"price": 40, "free_items": {"quantity": 2, "item": "B"}},
+        "F": {"price": 10, "free_items": {"quantity": 3, "item": "F"}}
     }
 
     total_cost = 0
@@ -59,4 +60,7 @@ def checkout(skus):
 
         total_cost += (item_count*item_price)
 
+    print(total_cost)
     return total_cost
+
+checkout("FFF")
