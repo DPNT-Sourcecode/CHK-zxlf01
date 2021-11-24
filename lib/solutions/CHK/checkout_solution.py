@@ -31,7 +31,7 @@ def checkout(skus):
         "Z": {"price": 21}
     }
 
-    special_offers = [{"collection": ["S", "T", "X", "Y", "Z"]}]
+    special_offer = {"collection": ["S", "T", "X", "Y", "Z"], "cost": 45}
 
     total_cost = 0
     all_items = dict.fromkeys(items, 0)
@@ -42,7 +42,30 @@ def checkout(skus):
         else:
             return -1
 
-    
+    #Applies special offer up front - allows for multiple instances
+    offer_items_collection = special_offer["collection"]
+
+    checking_for_offers = True
+
+    while checking_for_offers:
+
+        offer_items_present = []
+
+        for offer_item in offer_items_collection:
+
+            if all_items[offer_item] > 1:
+                offer_items_present.append(offer_item)
+                checking_for_offers = False
+
+        if len(offer_items_present) == 3:
+            total_cost += special_offer["cost"]
+
+            for offer_item in offer_items_present[:3]:
+                all_items[offer_item] -= 1
+        else:
+            checking_for_offers = False
+
+
 
     # Checks for free items and removes from shopping list
     for item, item_details in items.items():
@@ -85,5 +108,3 @@ def checkout(skus):
         total_cost += (item_count*item_price)
 
     return total_cost
-
-
