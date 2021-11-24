@@ -47,35 +47,29 @@ def checkout(skus):
     # Did not originally account for multiple instances of each item.
     offer_items_collection = special_offer["collection"]
 
-    checking_for_offers = True
+    all_prices = []
+    offer_items_in_basket = []
 
-    while checking_for_offers:
+    for offer_item in offer_items_collection:
+        tuple = (offer_item, items[offer_item]["price"])
+        all_prices.append(tuple)
 
-        all_prices = []
+    sorted_by_price = sorted(all_prices, key=lambda x: x[1])
 
-        offer_items_quantity = {}
-        number_of_offer_items = 0
+    for item, _ in sorted_by_price:
+        for i in range(0, all_items[item]):
+            offer_items_in_basket.append(item)
 
-        for offer_item in offer_items_collection:
+    checking_for_multi_discount = True
 
-            if all_items[offer_item] > 0:
-                offer_items_quantity.update({offer_item: all_items[offer_item]})
-                number_of_offer_items += 1
+    while checking_for_multi_discount:
 
-        for offer_item in offer_items_quantity.keys():
-            tuple = (offer_item, items[offer_item]["price"])
-            all_prices.append(tuple)
-
-        sorted_by_price = sorted(all_prices, key=lambda x: x[1], reverse=True)
-
-        discount_items = 0
-
-        for item, price in sorted_by_price:
-            while offer_items_quantity[item] > 0:
-                discount_items += 1
-                if discount_items == 3:
-                    offer_items_quantity[item] -= 1
-
+        if len(offer_items_in_basket) >= 3:
+            for i in range(0, 3):
+                item = offer_items_in_basket.pop()
+                all_items[item] -= 1
+        else:
+            checking_for_multi_discount = False
 
     # Checks for free items and removes from shopping list
     for item, item_details in items.items():
@@ -118,3 +112,5 @@ def checkout(skus):
         total_cost += (item_count*item_price)
 
     return total_cost
+checkout("ZZZXSY")
+
