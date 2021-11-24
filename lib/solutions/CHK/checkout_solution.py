@@ -68,6 +68,7 @@ def checkout(skus):
             for i in range(0, 3):
                 item = offer_items_in_basket.pop()
                 all_items[item] -= 1
+            total_cost += special_offer["cost"]
         else:
             checking_for_multi_discount = False
 
@@ -112,5 +113,5 @@ def checkout(skus):
         total_cost += (item_count*item_price)
 
     return total_cost
-checkout("ZZZXSY")
+
 
