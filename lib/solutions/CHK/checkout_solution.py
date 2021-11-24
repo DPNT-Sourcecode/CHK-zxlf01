@@ -24,7 +24,7 @@ def checkout(skus):
 
         item_count = all_items.count(item)
 
-        if item_details.get("free_items"):
+        if item_details.get("free_items") and item_count:
             free_items = item_details["free_items"]
             quantity_required = free_items["quantity"]
             free_item = free_items["item"]
