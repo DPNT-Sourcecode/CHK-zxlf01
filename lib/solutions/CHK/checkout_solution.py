@@ -53,7 +53,7 @@ def checkout(skus):
 
         for offer_item in offer_items_collection:
 
-            if all_items[offer_item] > 1:
+            if all_items[offer_item] > 0:
                 offer_items_present.append(offer_item)
                 checking_for_offers = False
 
@@ -62,9 +62,13 @@ def checkout(skus):
 
             all_prices = []
 
-            for offer_item in offer_items_present:
+            all_prices.append = {offer_item: items[offer_item]["price"]}
+            sorted_by_price = dict(sorted(all_prices.items(), key=lambda x: x[1]))
+
+            for offer_item in sorted_by_price[3:]:
                 all_prices.append = {offer_item: items[offer_item]["price"]}
                 sorted_by_price = dict(sorted(all_prices.items(), key=lambda x: x[1]))
+
         else:
             checking_for_offers = False
 
@@ -109,4 +113,6 @@ def checkout(skus):
         total_cost += (item_count*item_price)
 
     return total_cost
+
+checkout("STXY")
 
